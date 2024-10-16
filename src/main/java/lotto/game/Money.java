@@ -4,13 +4,15 @@ import lotto.exception.LottoIllegalArgumentException;
 
 import java.util.Objects;
 
-import static lotto.game.LottoMachine.LOTTO_PRICE;
 
 public class Money {
+    public static final int LOTTO_PRICE = 1000;
+    private static final int ZERO = 0;
+
     private final int value;
 
     public Money(int value) {
-        if(value < LOTTO_PRICE) {
+        if(value < ZERO) {
             throw LottoIllegalArgumentException.NEGATIVE_AMOUNT;
         }
         this.value = value;
@@ -18,6 +20,13 @@ public class Money {
 
     public int divideByLottoPrice() {
         return value / LOTTO_PRICE;
+    }
+
+    public Money buyLotto(LottoCount count){
+        if(value - (LOTTO_PRICE * count.getValue()) < 0) {
+            throw LottoIllegalArgumentException.INVALID_MANUAL_LOTTO_COUNT;
+        }
+        return new Money(value - (LOTTO_PRICE * count.getValue()));
     }
 
     @Override

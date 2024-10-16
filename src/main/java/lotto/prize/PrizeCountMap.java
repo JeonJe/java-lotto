@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static lotto.game.LottoMachine.LOTTO_PRICE;
+import static lotto.game.Money.LOTTO_PRICE;
+
 
 public class PrizeCountMap {
     private static final int ZERO = 0;
